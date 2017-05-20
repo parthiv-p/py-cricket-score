@@ -43,7 +43,11 @@ def printTeamDetails():
 		print 'Wait for the match to start'					#the playing XI are updated only after the match has started
 
 def printVenueDetails():
-	pass
+	matchScorecard = ET.XML(requests.get(matchDataPath + 'scorecard.xml').content)
+	ground = matchScorecard.get('grnd')
+	city = matchScorecard.get('vcity')
+	country = matchScorecard.get('vcountry')
+	print '\nGround: {ground}\nCity: {city}\nCountry: {country}'.format(ground = ground, city = city, country = country)
 
 #Make a local copy of the XML just for reference
 xml_copy = open('livematches.xml', 'w')
